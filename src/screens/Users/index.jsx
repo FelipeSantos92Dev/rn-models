@@ -8,12 +8,15 @@ import { user } from "../../data/Profile";
 
 import User from "../../models/user/User";
 import UsersRepository from "../../models/user/UserRepository";
+import { useNavigation } from "@react-navigation/native";
 
 const usersList = new UsersRepository();
 
 let userId = 1; // Inicia o ID do usuário
 
 export default function Users() {
+  const navigation = useNavigation();
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [age, setAge] = useState("");
@@ -25,6 +28,8 @@ export default function Users() {
 
     usersList.add(newUser);
     setAllUsers(usersList.getAll());
+
+    clearInputs();
 
     return newUser;
   };
@@ -44,16 +49,19 @@ export default function Users() {
           placeholder="Digite o nome do aluno"
           style={styles.userInput}
           onChangeText={setName}
+          value={name}
         />
         <TextInput
           placeholder="Digite o email do aluno"
           style={styles.userInput}
           onChangeText={setEmail}
+          value={email}
         />
         <TextInput
           placeholder="Digite a idade do aluno"
           style={styles.userInput}
           onChangeText={(text) => setAge(text)}
+          value={age}
           keyboardType="numeric"
         />
 
@@ -64,7 +72,14 @@ export default function Users() {
 
       <View>
         {allUsers.length > 0 ? (
-          allUsers.map((user) => <Text key={user.id}>{user.name}</Text>)
+          allUsers.map((user) => (
+            <TouchableOpacity
+              key={user.id}
+              onPress={() => navigation.navigate("Profile", { data: user })}
+            >
+              <Text>{user.name}</Text>
+            </TouchableOpacity>
+          ))
         ) : (
           <Text>Não há usuários cadastrados</Text>
         )}
