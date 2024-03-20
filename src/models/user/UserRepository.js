@@ -1,4 +1,4 @@
-export default class UsersRepository {
+class UsersRepository {
   constructor() {
     this.users = [];
   }
@@ -30,3 +30,7 @@ export default class UsersRepository {
     return user;
   }
 }
+
+const usersRepository = new UsersRepository();
+
+export default usersRepository;

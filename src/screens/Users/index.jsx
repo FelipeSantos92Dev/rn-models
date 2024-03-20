@@ -1,5 +1,6 @@
-import { useState } from "react";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { useState } from "react";
 
 import styles from "./styles";
 import Title from "../../components/Title";
@@ -7,10 +8,7 @@ import TouchButton from "../../components/TouchButton";
 import { user } from "../../data/Profile";
 
 import User from "../../models/user/User";
-import UsersRepository from "../../models/user/UserRepository";
-import { useNavigation } from "@react-navigation/native";
-
-const usersList = new UsersRepository();
+import usersRepository from "../../models/user/UserRepository";
 
 let userId = 1; // Inicia o ID do usuário
 
@@ -26,8 +24,8 @@ export default function Users() {
   const createUser = () => {
     const newUser = new User(userId++, name, email, parseInt(age) || 0); // Incrementa o ID após o uso
 
-    usersList.add(newUser);
-    setAllUsers(usersList.getAll());
+    usersRepository.add(newUser);
+    setAllUsers(usersRepository.getAll());
 
     clearInputs();
 
@@ -73,12 +71,24 @@ export default function Users() {
       <View>
         {allUsers.length > 0 ? (
           allUsers.map((user) => (
-            <TouchableOpacity
-              key={user.id}
-              onPress={() => navigation.navigate("Profile", { data: user })}
-            >
-              <Text>{user.name}</Text>
-            </TouchableOpacity>
+            <View key={user.id}>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate("Profile", { data: user, edit: false })
+                }
+              >
+                <Text>{user.name}</Text>
+              </TouchableOpacity>
+              <View>
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate("Profile", { data: user, edit: true })
+                  }
+                >
+                  <Text>Editar: {user.name}</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
           ))
         ) : (
           <Text>Não há usuários cadastrados</Text>
