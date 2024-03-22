@@ -1,16 +1,33 @@
 import { Text, TouchableOpacity, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import styles from "./styles";
 import Title from "../../components/Title";
-import { useNavigation } from "@react-navigation/native";
+
+import usersRepository from "../../models/user/UserRepository";
 
 export default function Profile({ route }) {
   const navigation = useNavigation();
   const { data } = route.params;
 
+  const editUser = () => {
+    navigation.navigate("Form", { user: data, edit: true });
+  };
+
+  const deleteUser = () => {
+    usersRepository.remove(data.id);
+    navigation.navigate("Users");
+  };
+
   return (
     <View style={styles.container}>
       <Title title="Profile" />
+
+      {data ? (
+        <Text>Detalhes do usuário</Text>
+      ) : (
+        <Text>Selecione um usuário para exibir seus detalhes</Text>
+      )}
 
       <View style={styles.user}>
         <View style={styles.userDetail}>
@@ -20,20 +37,10 @@ export default function Profile({ route }) {
         </View>
 
         <View style={styles.userActions}>
-          <TouchableOpacity
-            style={styles.editButton}
-            onPress={() =>
-              navigation.navigate("Form", { user: data, edit: true })
-            }
-          >
+          <TouchableOpacity style={styles.editButton} onPress={editUser}>
             <Text>Editar</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.deleteButton}
-            onPress={() =>
-              navigation.navigate("Form", { user: data, edit: true })
-            }
-          >
+          <TouchableOpacity style={styles.deleteButton} onPress={deleteUser}>
             <Text>Excluir</Text>
           </TouchableOpacity>
         </View>

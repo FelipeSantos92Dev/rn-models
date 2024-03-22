@@ -9,7 +9,7 @@ import usersRepository from "../../models/user/UserRepository";
 import User from "../../models/user/User";
 
 export default function Form({ route }) {
-  const { user, edit } = route.params;
+  let { user, edit } = route.params;
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -32,15 +32,18 @@ export default function Form({ route }) {
   const handleUserAction = () => {
     if (isUpdate) {
       usersRepository.update(user.id, name, email, parseInt(age) || 0);
+      clearInputs();
     } else {
       const newUser = new User(name, email, parseInt(age) || 0);
       usersRepository.add(newUser);
+      clearInputs();
     }
     navigation.navigate("Users");
   };
 
   const clearInputs = () => {
     setIsUpdate(false);
+    edit = false;
     setName("");
     setEmail("");
     setAge("");
