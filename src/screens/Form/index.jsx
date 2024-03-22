@@ -4,7 +4,6 @@ import { useState } from "react";
 
 import styles from "./styles";
 import Title from "../../components/Title";
-import TouchButton from "../../components/TouchButton";
 
 import usersRepository from "../../models/user/UserRepository";
 import User from "../../models/user/User";
@@ -36,10 +35,6 @@ export default function Form() {
   return (
     <View style={styles.container}>
       <Title title="Form" />
-
-      {/* <TouchButton route="Category" title="Go to Category" />
-
-      <TouchButton route="Profile" title="Go to Profile" data={user} /> */}
 
       <View>
         <TextInput

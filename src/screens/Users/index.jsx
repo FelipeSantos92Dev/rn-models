@@ -28,24 +28,12 @@ export default function Users({ route }) {
               >
                 <Text>{user.name}</Text>
               </TouchableOpacity>
-              {/* <View>
-                <TouchableOpacity
-                  onPress={() =>
-                    navigation.navigate("Profile", { data: user, edit: true })
-                  }
-                >
-                  <Text>Editar: {user.name}</Text>
-                </TouchableOpacity>
-              </View> */}
             </View>
           ))
         ) : (
           <Text>Não há usuários cadastrados</Text>
         )}
       </View>
-
-      {/* <TouchButton route="Category" title="Go to Category" />
-      <TouchButton route="Profile" title="Go to Profile" data={user} /> */}
     </View>
   );
 }
