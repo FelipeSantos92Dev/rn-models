@@ -35,7 +35,7 @@ class UsersRepository {
 }
 
 const usersRepository = new UsersRepository();
-const newUser = new User(user.id, user.name, user.email, user.age);
+const newUser = new User(user.name, user.email, parseInt(user.age) || 0);
 
 usersRepository.add(newUser);
 

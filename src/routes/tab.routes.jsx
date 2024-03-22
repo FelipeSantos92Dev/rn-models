@@ -75,6 +75,7 @@ const TabRoutes = () => {
       <Tab.Screen
         name="Form"
         component={Form}
+        initialParams={{ user: null, edit: false }}
         options={{
           tabBarIcon: ({ focused }) => (
             <Feather

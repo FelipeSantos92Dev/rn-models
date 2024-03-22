@@ -1,8 +1,12 @@
 export default class User {
-  constructor(id, name, email, age) {
-    this.id = id;
+  constructor(name, email, age) {
+    this.id = this.generateId();
     this.name = name;
     this.email = email;
     this.age = age;
+  }
+
+  generateId() {
+    return Math.floor(Math.random() * 1000);
   }
 }

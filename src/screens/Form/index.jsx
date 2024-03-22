@@ -1,6 +1,6 @@
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import styles from "./styles";
 import Title from "../../components/Title";
@@ -8,25 +8,39 @@ import Title from "../../components/Title";
 import usersRepository from "../../models/user/UserRepository";
 import User from "../../models/user/User";
 
-let userId = 1;
+export default function Form({ route }) {
+  const { user, edit } = route.params;
 
-export default function Form() {
-  const [allUsers, setAllUsers] = useState(usersRepository.getAll());
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [age, setAge] = useState("");
+  const [isUpdate, setIsUpdate] = useState(edit);
 
   const navigation = useNavigation();
 
-  const createUser = () => {
-    const newUser = new User(userId++, name, email, parseInt(age) || 0);
-    usersRepository.add(newUser);
-    setAllUsers(usersRepository.getAll());
-    clearInputs();
+  useEffect(() => {
+    if (edit) {
+      setName(user.name);
+      setEmail(user.email);
+      setAge(String(user.age));
+      setIsUpdate(true);
+    } else {
+      clearInputs();
+    }
+  }, [user, edit]);
+
+  const handleUserAction = () => {
+    if (isUpdate) {
+      usersRepository.update(user.id, name, email, parseInt(age) || 0);
+    } else {
+      const newUser = new User(name, email, parseInt(age) || 0);
+      usersRepository.add(newUser);
+    }
     navigation.navigate("Users");
   };
 
   const clearInputs = () => {
+    setIsUpdate(false);
     setName("");
     setEmail("");
     setAge("");
@@ -34,33 +48,36 @@ export default function Form() {
 
   return (
     <View style={styles.container}>
-      <Title title="Form" />
+      <Title title={isUpdate ? "Editar Usuário" : "Novo Usuário"} />
+      <TextInput
+        placeholder="Digite o nome do usuário"
+        style={styles.userInput}
+        onChangeText={setName}
+        value={name}
+      />
+      <TextInput
+        placeholder="Digite o email do usuário"
+        style={styles.userInput}
+        onChangeText={setEmail}
+        value={email}
+      />
+      <TextInput
+        placeholder="Digite a idade do usuário"
+        style={styles.userInput}
+        onChangeText={setAge}
+        value={age}
+        keyboardType="numeric"
+      />
 
-      <View>
-        <TextInput
-          placeholder="Digite o nome do aluno"
-          style={styles.userInput}
-          onChangeText={setName}
-          value={name}
-        />
-        <TextInput
-          placeholder="Digite o email do aluno"
-          style={styles.userInput}
-          onChangeText={setEmail}
-          value={email}
-        />
-        <TextInput
-          placeholder="Digite a idade do aluno"
-          style={styles.userInput}
-          onChangeText={(text) => setAge(text)}
-          value={age}
-          keyboardType="numeric"
-        />
+      <TouchableOpacity style={styles.button} onPress={handleUserAction}>
+        <Text>{isUpdate ? "Salvar Alterações" : "Criar Usuário"}</Text>
+      </TouchableOpacity>
 
-        <TouchableOpacity style={styles.button} onPress={createUser}>
-          <Text>Criar Usuário</Text>
+      {isUpdate && (
+        <TouchableOpacity style={styles.button} onPress={clearInputs}>
+          <Text>Cancelar Edição</Text>
         </TouchableOpacity>
-      </View>
+      )}
     </View>
   );
 }
