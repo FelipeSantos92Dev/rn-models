@@ -12,6 +12,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#C9D4FF",
     borderRadius: 5,
   },
+  userInput: {
+    padding: 8,
+    borderBottomColor: "black",
+    borderBottomWidth: 1,
+    width: "75%",
+  },
 });
 
 export default styles;

@@ -7,6 +7,10 @@ import Form from "../screens/Form";
 import Users from "../screens/Users";
 import { user } from "../data/Profile";
 
+import usersRepository from "../models/user/UserRepository";
+
+const users = usersRepository.getAll();
+
 const Tab = createBottomTabNavigator();
 
 const TabRoutes = () => {
@@ -35,6 +39,7 @@ const TabRoutes = () => {
       <Tab.Screen
         name="Users"
         component={Users}
+        initialParams={{ users }}
         options={{
           tabBarIcon: ({ focused }) => (
             <Feather

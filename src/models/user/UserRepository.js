@@ -1,3 +1,6 @@
+import { user } from "../../data/Profile";
+import User from "./User";
+
 class UsersRepository {
   constructor() {
     this.users = [];
@@ -32,5 +35,8 @@ class UsersRepository {
 }
 
 const usersRepository = new UsersRepository();
+const newUser = new User(user.id, user.name, user.email, user.age);
+
+usersRepository.add(newUser);
 
 export default usersRepository;
