@@ -11,11 +11,11 @@ export default function Profile({ route }) {
     <View style={styles.container}>
       <Title title="Profile" />
 
-      <TouchButton route="Home" title="Go to Home" />
+      {/* <TouchButton route="Home" title="Go to Home" />
 
-      <TouchButton route="Category" title="Go to Category" />
+      <TouchButton route="Category" title="Go to Category" /> */}
 
-      {edit ? <Text>Editando</Text> : <Text>Não estou Editando</Text>}
+      {/* {edit ? <Text>Editando</Text> : <Text>Não estou Editando</Text>} */}
 
       <View style={styles.user}>
         <Title title="User" />
