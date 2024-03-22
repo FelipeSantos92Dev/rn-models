@@ -42,7 +42,9 @@ export default function Users() {
     <View style={styles.container}>
       <Title title="Users" />
 
-      <View>
+      <Text>Tela de listagem de todos usuários</Text>
+
+      {/* <View>
         <TextInput
           placeholder="Digite o nome do aluno"
           style={styles.userInput}
@@ -66,7 +68,7 @@ export default function Users() {
         <TouchableOpacity style={styles.button} onPress={createUser}>
           <Text>Criar Usuário</Text>
         </TouchableOpacity>
-      </View>
+      </View> */}
 
       <View>
         {allUsers.length > 0 ? (
@@ -95,8 +97,8 @@ export default function Users() {
         )}
       </View>
 
-      <TouchButton route="Category" title="Go to Category" />
-      <TouchButton route="Profile" title="Go to Profile" data={user} />
+      {/* <TouchButton route="Category" title="Go to Category" />
+      <TouchButton route="Profile" title="Go to Profile" data={user} /> */}
     </View>
   );
 }

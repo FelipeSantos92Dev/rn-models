@@ -8,15 +8,15 @@ import { user } from "../../data/Profile";
 
 import usersRepository from "../../models/user/UserRepository";
 
-export default function Category() {
+export default function Form() {
   const [allUsers, setAllUsers] = useState(usersRepository.getAll());
   return (
     <View style={styles.container}>
-      <Title title="Category" />
+      <Title title="Form" />
 
-      <TouchButton route="Category" title="Go to Category" />
+      {/* <TouchButton route="Category" title="Go to Category" />
 
-      <TouchButton route="Profile" title="Go to Profile" data={user} />
+      <TouchButton route="Profile" title="Go to Profile" data={user} /> */}
 
       {allUsers ? (
         allUsers.map((user) => (
