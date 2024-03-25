@@ -59,6 +59,9 @@ const TabRoutes = () => {
         component={Profile}
         initialParams={{ data: user }}
         options={{
+          tabBarItemStyle: {
+            display: "none",
+          },
           tabBarIcon: ({ focused }) => (
             <Feather
               name="user"
