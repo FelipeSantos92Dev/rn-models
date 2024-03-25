@@ -1,10 +1,12 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Feather } from "@expo/vector-icons";
 
+import { user } from "../data/Profile";
 import Home from "../screens/Home";
 import Profile from "../screens/Profile";
-import Users from "../screens/Users";
-import { user } from "../data/Profile";
+import Filiais from "../screens/Filiais";
+import Details from "../screens/Details";
+import Form from "../screens/Form";
 
 const Tab = createBottomTabNavigator();
 
@@ -16,8 +18,8 @@ const TabRoutes = () => {
         tabBarStyle: {backgroundColor: '#121212'}
       }}>
         <Tab.Screen
-          name="Users"
-          component={Users}
+          name="Filiais"
+          component={Filiais}
           options={{
             tabBarIcon: ({ focused }) => (
               <Feather
@@ -30,6 +32,26 @@ const TabRoutes = () => {
             tabBarActiveTintColor: "#7c5295",
             tabBarInactiveTintColor: "#fff",
           }}
+        />
+        <Tab.Screen
+          name="Form"
+          component={Form}
+          options={{
+            tabBarIcon: ({ focused }) => (
+              <Feather
+                name="printer"
+                size={24}
+                color={focused ? "#7c5295" : "#fff"}
+              />
+            ),
+            tabBarLabel: "Form",
+            tabBarActiveTintColor: "#7c5295",
+            tabBarInactiveTintColor: "#fff",
+          }}
+        />
+        <Tab.Screen
+          name="Details"
+          component={Details}
         />
       <Tab.Screen
         name="Home"
