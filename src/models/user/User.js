@@ -1,9 +1,18 @@
 export default class User {
-  constructor(name, email, age) {
+  constructor(nomeFilial, fundacao, corPrimaria, corSecundaria, quantidadeFuncionarios, capacidadeAlunosMatriculadosPorAno, quantidadeTurmas, endereco, telefone, email, nomeResponsavel, cargoResponsavel) {
     this.id = this.generateId();
-    this.name = name;
+    this.nomeFilial = nomeFilial;
+    this.fundacao = fundacao;
+    this.corPrimaria = corPrimaria;
+    this.corSecundaria = corSecundaria;
+    this.quantidadeFuncionarios = quantidadeFuncionarios;
+    this.capacidadeAlunosMatriculadosPorAno = capacidadeAlunosMatriculadosPorAno;
+    this.quantidadeTurmas = quantidadeTurmas;
+    this.endereco = endereco;
+    this.telefone = telefone;
     this.email = email;
-    this.age = age;
+    this.nomeResponsavel = nomeResponsavel;
+    this.cargoResponsavel = cargoResponsavel;
   }
 
   generateId() {
