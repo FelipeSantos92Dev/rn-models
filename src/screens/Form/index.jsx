@@ -149,16 +149,17 @@ export default function Form({ route }) {
         onChangeText={setCargoResponsavel}
         value={cargoResponsavel}
       />
-
+    <View style={styles.buttons}>
       <TouchableOpacity style={styles.button} onPress={handleUserAction}>
-        <Text>{isUpdate ? "Salvar Alterações" : "Criar Filial"}</Text>
+        <Text style={styles.buttonTxt}>{isUpdate ? "Salvar Alterações" : "Criar Filial"}</Text>
       </TouchableOpacity>
 
       {isUpdate && (
         <TouchableOpacity style={styles.button} onPress={clearInputs}>
-          <Text>Cancelar Edição</Text>
+          <Text style={styles.buttonTxt}>Cancelar Edição</Text>
         </TouchableOpacity>
       )}
+    </View>
     </View>
   );
 }

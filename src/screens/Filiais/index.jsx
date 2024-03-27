@@ -30,8 +30,8 @@ export default function Filiais() {
 
   return (
     <View style={styles.container}>
-      <Title title="Filiais" />
-      <Text>Tela de listagem de todos as filiais</Text>
+      <Title style={styles.title} title="Filiais" />
+      <Text style={styles.title}>Tela de listagem de todos as filiais</Text>
 
       {allUsers.length > 0 ? (
         <View style={styles.userList}>
@@ -44,42 +44,11 @@ export default function Filiais() {
               <View style={styles.userActions}>
                 <TouchableOpacity
                   style={styles.detailsButton}
-                  onPress={() => setVisible(true)}
+                  onPress={() => navigation.navigate('Details', {data: user})}
                 >
                   <Text>Detalhes</Text>
                 </TouchableOpacity>
               </View>
-              <Dialog visible={visible} onDismiss={() => setVisible(false)}>
-                <DialogHeader title={user.nomeFilial} />
-                <DialogContent>
-                  <Text>{user.nomeFilial}</Text>
-                  <Text>{user.fundacao}</Text>
-                  <Text>{user.corPrimaria}</Text>
-                  <Text>{user.corSecundaria}</Text>
-                  <Text>{user.quantidadeFuncionarios}</Text>
-                  <Text>{user.capacidadeAlunosMatriculadosPorAno}</Text>
-                  <Text>{user.quantidadeTurmas}</Text>
-                  <Text>{user.endereco}</Text>
-                  <Text>{user.telefone}</Text>
-                  <Text>{user.email}</Text>
-                  <Text>{user.nomeResponsavel}</Text>
-                  <Text>{user.cargoResponsavel}</Text>
-                </DialogContent>
-                <DialogActions>
-                  <Button
-                    title="Cancel"
-                    compact
-                    variant="text"
-                    onPress={() => setVisible(false)}
-                  />
-                  <Button
-                    title="Ok"
-                    compact
-                    variant="text"
-                    onPress={() => setVisible(false)}
-                  />
-                </DialogActions>
-              </Dialog>
             </View>
           ))}
         </View>

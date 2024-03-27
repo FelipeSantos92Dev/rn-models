@@ -3,8 +3,9 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 50,
     alignItems: "center",
+    backgroundColor: '#121212',
+    padding: 20
   },
   userItem: {
     flexDirection: "row",
@@ -13,7 +14,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 10,
     borderBottomWidth: 1,
-    borderBottomColor: "#ccc",
+    backgroundColor: '#1f1b24',
+    borderRadius: 10,
+    width: 250,
+    marginTop: 30
   },
   userDetailButton: {
     padding: 10,
@@ -27,7 +31,7 @@ const styles = StyleSheet.create({
   },
   userName: {
     fontSize: 16,
-    color: "#333",
+    color: "#fff",
     fontWeight: "bold",
   },
   editButton: {
@@ -41,10 +45,16 @@ const styles = StyleSheet.create({
   detailsButton: {
     padding: 5,
     borderRadius: 5,
-    backgroundColor: "#ADD8E6",
+    backgroundColor: "#7c5295",
     minWidth: 70,
     alignItems: "center",
   },
+  nome: {
+    color: '#fff'
+  },
+  title: {
+    color: '#fff'
+  }
 });
 
 export default styles;
