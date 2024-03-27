@@ -67,9 +67,13 @@ export default function Form({ route }) {
       usersRepository.update(user.id, nomeFilial, fundacao, corPrimaria, corSecundaria, quantidadeFuncionarios, capacidadeAlunosMatriculadosPorAno, quantidadeTurmas, endereco, telefone, email, nomeResponsavel, cargoResponsavel);
       clearInputs();
     } else {
-      const newUser = new User(nomeFilial, fundacao, corPrimaria, corSecundaria, quantidadeFuncionarios, capacidadeAlunosMatriculadosPorAno, quantidadeTurmas, endereco, telefone, email, nomeResponsavel, cargoResponsavel);
-      usersRepository.add(newUser);
-      clearInputs();
+      if(nomeFilial == '', fundacao == '', corPrimaria == '', corSecundaria == '', quantidadeFuncionarios == '', capacidadeAlunosMatriculadosPorAno == '', quantidadeTurmas == '', endereco == '', telefone == '', email == '', nomeResponsavel == '', cargoResponsavel == '') {
+        clearInputs()
+      } else {
+        const newUser = new User(nomeFilial, fundacao, corPrimaria, corSecundaria, quantidadeFuncionarios, capacidadeAlunosMatriculadosPorAno, quantidadeTurmas, endereco, telefone, email, nomeResponsavel, cargoResponsavel);
+        usersRepository.add(newUser);
+        clearInputs();
+      }
     }
     navigation.navigate("Filiais");
   };

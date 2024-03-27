@@ -4,6 +4,8 @@ import Title from '../../components/Title'
 
 import styles from "./styles";
 import usersRepository from "../../models/user/UserRepository";
+import User from "../../models/user/User";
+import Profile from '../../data/Profile'
 
 export default function Details({ route }) {
     const navigation = useNavigation();
@@ -18,6 +20,12 @@ export default function Details({ route }) {
         navigation.navigate("Filiais");
     };
 
+    const addProfile = () => {
+        const newUser = new User.add(Profile);
+        usersRepository.add(newUser)
+    }
+
+    addProfile()
 
     return (
         <View style={styles.container}>
