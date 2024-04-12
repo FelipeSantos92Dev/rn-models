@@ -22,20 +22,29 @@ class UsersRepository {
     this.users = this.users.filter((user) => user.id !== id);
   }
 
-  update(id, name, email, age) {
+  update(id, nomeFilial, fundacao, corPrimaria, corSecundaria, quantidadeFuncionarios, capacidadeAlunosMatriculadosPorAno, quantidadeTurmas, endereco, telefone, email, nomeResponsavel, cargoResponsavel) {
     const user = this.get(id);
 
-    if (user) {
-      user.name = name;
+    if(user) {
+      user.nomeFilial = nomeFilial;
+      user.fundacao = fundacao;
+      user.corPrimaria = corPrimaria;
+      user.corSecundaria = corSecundaria;
+      user.quantidadeFuncionarios = quantidadeFuncionarios;
+      user.capacidadeAlunosMatriculadosPorAno = capacidadeAlunosMatriculadosPorAno;
+      user.quantidadeTurmas = quantidadeTurmas;
+      user.endereco = endereco;
+      user.telefone = telefone;
       user.email = email;
-      user.age = age;
-    }
-    return user;
+      user.nomeResponsavel = nomeResponsavel;
+      user.cargoResponsavel = cargoResponsavel;
+  }
+  return user
   }
 }
 
 const usersRepository = new UsersRepository();
-const newUser = new User(user.name, user.email, parseInt(user.age) || 0);
+const newUser = new User(user.nomeFilial, user.fundacao, user.corPrimaria, user.corSecundaria, user.quantidadeFuncionarios, user.capacidadeAlunosMatriculadosPorAno, user.quantidadeTurmas, user.endereco, user.telefone, user.email, user.nomeResponsavel, user.cargoResponsavel);
 
 usersRepository.add(newUser);
 
